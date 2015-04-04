@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::translate(){
+
     QString text = ui->textEdit->toPlainText();
     if(text == "Je suis" || text == "I am"){
         ui->textEdit_2->clear();
