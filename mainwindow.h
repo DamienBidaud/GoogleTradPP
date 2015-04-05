@@ -18,6 +18,7 @@ public:
 public slots:
     void translate();
     void change();
+    void reset();
 
 private:
     Ui::MainWindow *ui;

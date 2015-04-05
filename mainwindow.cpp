@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(translate()));
     QObject::connect(this->ui->pushButton, SIGNAL(clicked()), this, SLOT(change()));
+    QObject::connect(this->ui->pushButton_3, SIGNAL(clicked()), this, SLOT(reset()));
 }
 
 MainWindow::~MainWindow()
@@ -40,4 +41,9 @@ void MainWindow::change(){
     QString label1 = ui->label->text();
     ui->label->setText(ui->label_2->text());
     ui->label_2->setText(label1);
+}
+
+void MainWindow::reset(){
+    ui->textEdit->clear();
+    ui->textEdit_2->clear();
 }
