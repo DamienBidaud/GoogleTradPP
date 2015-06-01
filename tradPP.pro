@@ -13,8 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    language.cpp \
+    word.cpp \
+    xmlparseur.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    language.h \
+    word.h \
+    xmlparseur.h
 
 FORMS    += mainwindow.ui

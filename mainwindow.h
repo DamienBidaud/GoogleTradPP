@@ -2,7 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QDir>
+#include <QDebug>
+#include <QRegExp>
+#include <QVector>
+#include "language.h"
+#include <algorithm>
+#include <QMap>
+#include "xmlparseur.h"
+#include "word.h"
 namespace Ui {
 class MainWindow;
 }
@@ -14,6 +22,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void checkLanguage();
+    bool isInVector(QString);
 
 public slots:
     void translate();
@@ -22,6 +32,9 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    QVector<language*> lang;
+    QMap<QString, QMap<QString, word>> dico;
+
 };
 
 #endif // MAINWINDOW_H
