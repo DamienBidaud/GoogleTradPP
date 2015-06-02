@@ -32,15 +32,12 @@ void MainWindow::translate(){
         QMap<QString, word> dicoTrad = dico.value(key);
         for(int i = 0; i < phrases.length(); i++){
                 word w = dicoTrad.value(phrases[i]);
-
                 if(phrases[i]!= ""){
                     translate += w.getTranslate() + " ";
                 }
             }
-
         this->ui->textEdit_2->setText(translate);
     }
-
 }
 
 void MainWindow::change(){

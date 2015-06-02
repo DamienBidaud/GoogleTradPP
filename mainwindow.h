@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <QMap>
 #include "xmlparseur.h"
+#include "xmlparseurfr.h"
 #include "word.h"
 namespace Ui {
 class MainWindow;

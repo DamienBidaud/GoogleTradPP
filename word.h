@@ -12,6 +12,7 @@ public:
     void setName(QString);
     void setTranslat(QString);
     QString getName();
+    QString getTranslate();
     ~word();
 private:
     QString name;

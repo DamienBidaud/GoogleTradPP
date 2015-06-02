@@ -2,7 +2,9 @@
 
 word::word()
 {
-
+    this->name="";
+    this->translat="";
+    this->type="";
 }
 
 word::word(QString name, QString translat, QString type){
@@ -32,4 +34,8 @@ void word::setTranslat(QString translate){
 
 QString word::getName(){
     return this->name;
+}
+
+QString word::getTranslate(){
+    return this->translat;
 }

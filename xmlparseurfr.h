@@ -1,5 +1,7 @@
-#ifndef XMLPARSEUR_H
-#define XMLPARSEUR_H
+#ifndef XMLPARSEURFR_H
+#define XMLPARSEURFR_H
+
+
 
 #include <QXmlStreamReader>
 #include <QXmlStreamAttribute>
@@ -11,19 +13,18 @@
 #include <QMessageBox>
 #include "word.h"
 
-class XMLParseur
+class xmlparseurfr
 {
 public:
-    XMLParseur();
-    XMLParseur(QString);
-    ~XMLParseur();
+    xmlparseurfr();
+    xmlparseurfr(QString);
+    ~xmlparseurfr();
     void parsXML();
     void parseText(QXmlStreamReader &xml);
     void parseBody(QXmlStreamReader &xml);
     void parseEntry(QXmlStreamReader &xml);
     void parseForm(QXmlStreamReader &xml, word&);
     void parseSense(QXmlStreamReader &xml, word&);
-    void parseCit(QXmlStreamReader &xml, word&);
     QMap<QString, word>& getDico();
 private:
     QString fileName;
@@ -31,4 +32,5 @@ private:
     QMap<QString, word> dico;
 };
 
-#endif // XMLPARSEUR_H
+
+#endif // XMLPARSEURFR_H

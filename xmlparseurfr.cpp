@@ -1,21 +1,21 @@
-#include "xmlparseur.h"
+#include "xmlparseurfr.h"
 
-XMLParseur::XMLParseur()
+xmlparseurfr::xmlparseurfr()
 {
 
 }
 
-XMLParseur::XMLParseur(QString fileName){
+xmlparseurfr::xmlparseurfr(QString fileName){
     this->fileName = fileName;
     parsXML();
 }
 
-XMLParseur::~XMLParseur()
+xmlparseurfr::~xmlparseurfr()
 {
     delete this->file;
 }
 
-void XMLParseur::parsXML(){
+void xmlparseurfr::parsXML(){
     this->file = new QFile(this->fileName);
 
     QXmlStreamReader xml(file);
@@ -48,7 +48,7 @@ void XMLParseur::parsXML(){
     file->close();
 }
 
-void XMLParseur::parseText(QXmlStreamReader &xml){
+void xmlparseurfr::parseText(QXmlStreamReader &xml){
     if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="text"){
         return;
     }
@@ -64,7 +64,7 @@ void XMLParseur::parseText(QXmlStreamReader &xml){
     }
 }
 
-void XMLParseur::parseBody(QXmlStreamReader &xml){
+void xmlparseurfr::parseBody(QXmlStreamReader &xml){
     if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="body"){
         return;
     }
@@ -81,7 +81,7 @@ void XMLParseur::parseBody(QXmlStreamReader &xml){
     }
 }
 
-void XMLParseur::parseEntry(QXmlStreamReader &xml){
+void xmlparseurfr::parseEntry(QXmlStreamReader &xml){
     if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="entry"){
         return;
     }
@@ -105,7 +105,7 @@ void XMLParseur::parseEntry(QXmlStreamReader &xml){
     }
 }
 
-void XMLParseur::parseForm(QXmlStreamReader &xml, word &w){
+void xmlparseurfr::parseForm(QXmlStreamReader &xml, word &w){
     if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="form"){
         return;
     }
@@ -133,30 +133,14 @@ void XMLParseur::parseForm(QXmlStreamReader &xml, word &w){
 }
 
 
-void XMLParseur::parseSense(QXmlStreamReader &xml, word& w){
+void xmlparseurfr::parseSense(QXmlStreamReader &xml, word& w){
     if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="sense"){
         return;
     }
-
-    while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "sense")){
-        //QXmlStreamReader::TokenType token = xml.readNext();
-        if(xml.name()=="cit"){
-
-            parseCit(xml, w);
-        }
-        xml.readNext();
-    }
-}
-
-
-void XMLParseur::parseCit(QXmlStreamReader &xml, word& w){
-    if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="cit"){
-        return;
-    }
     QString element;
-    while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "cit")){
+    while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "sense")){
         if(xml.tokenType() == QXmlStreamReader::StartElement){
-            if(xml.name()=="quote"){
+            if(xml.name()=="def"){
                 element = xml.name().toString();
                 xml.readNext();
                 if(xml.tokenType() != QXmlStreamReader::Characters){
@@ -170,6 +154,6 @@ void XMLParseur::parseCit(QXmlStreamReader &xml, word& w){
     }
 }
 
-QMap<QString, word>& XMLParseur::getDico(){
+QMap<QString, word>& xmlparseurfr::getDico(){
     return this->dico;
 }
