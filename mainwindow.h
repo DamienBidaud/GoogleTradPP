@@ -34,7 +34,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QVector<language*> lang;
-    QMap<QString, QMap<QString, word>> dico;
+    QMap<QString, QMap<QString, word> > dico;
 
 };
 
