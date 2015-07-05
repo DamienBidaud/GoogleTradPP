@@ -38,7 +38,7 @@ void MainWindow::translate(){
             while(i+j < phrases.length()&& (w = dicoTrad.value(phrases[i+j]))!= ""){
                 if(phrases[i+j]!= "" && w != ""){
                     translate += w.getTranslate() + " ";
-                    i = i+j;
+                    i = i+(j+1);
                 }
                 j++;
             }
