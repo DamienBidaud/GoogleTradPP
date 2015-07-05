@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//traduit
 void MainWindow::translate(){
     if(this->ui->source->currentText() == this->ui->destination->currentText()){
         QMessageBox mes;
@@ -30,19 +31,28 @@ void MainWindow::translate(){
         QRegExp del2("\\ ");
         QStringList phrases = text.split(del);
         QMap<QString, word> dicoTrad = dico.value(key);
+        //QList keys = dicoTrad.keys();
         for(int i = 0; i < phrases.length(); i++){
-                word w = dicoTrad.value(phrases[i]);
-
-                if(phrases[i]!= ""){
+            int j = 0;
+            word w;
+            while(i+j < phrases.length()&& (w = dicoTrad.value(phrases[i+j]))!= ""){
+                if(phrases[i+j]!= "" && w != ""){
                     translate += w.getTranslate() + " ";
+                    i = i+j;
                 }
+                j++;
             }
-
+            if(w==""){
+                translate += phrases[i] + " ";
+            }
+        }
         this->ui->textEdit_2->setText(translate);
-    }
 
+    }
 }
 
+
+//échange les 2 valeurs du spinner
 void MainWindow::change(){
     int source = this->ui->source->currentIndex();
     int destination = this->ui->destination->currentIndex();
@@ -50,11 +60,13 @@ void MainWindow::change(){
     this->ui->destination->setCurrentIndex(source);
 }
 
+//reset les champs text
 void MainWindow::reset(){
     ui->textEdit->clear();
     ui->textEdit_2->clear();
 }
 
+//verifie les dicos disponnibles et les initialises
 void MainWindow::checkLanguage(){
     QDir dico("dico/");
     QRegExp del("\\-|\\.");
@@ -73,23 +85,13 @@ void MainWindow::checkLanguage(){
                 }else{
                     QStringList trad;
                     trad << countries[1];
-                    qDebug() << "ok";
                     language* l = new language(countries[0], trad);
                     this->lang.append(l);
                     this->ui->source->addItem(countries[0]);
                     this->ui->destination->addItem(countries[0]);
-
                     QString key = countries[0]+"-"+countries[1];
-                    if(key == "eng-fra"){
-                        XMLParseur xml("dico/"+files[i]);
-                        if(xml.getDico().empty()){
-                            qDebug()<<"empty";
-                        }
-                        this->dico.insert(key, xml.getDico());
-                    }else if(key == "fra-eng"){
-                        xmlparseurfr xml("dico/"+files[i]);
-                        this->dico.insert(key, xml.getDico());
-                    }
+                    XMLParseur xml("dico/"+files[i]);
+                    this->dico.insert(key, xml.getDico());
                 }
             }
         }
@@ -99,6 +101,7 @@ void MainWindow::checkLanguage(){
 }
 
 
+//verfie si une langue à déjà été enregister
 bool MainWindow::isInVector(QString country){
     if(!this->lang.isEmpty()){
         for(int i = 0; i < this->lang.size(); i++){
