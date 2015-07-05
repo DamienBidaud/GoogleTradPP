@@ -122,11 +122,14 @@ void XMLParseur::parseForm(QXmlStreamReader &xml, word &w){
                 w.setName(xml.text().toString());
             }
             if(xml.name()=="pron"){
+                element = xml.name().toString();
                 xml.readNext();
-                continue;
+                if(xml.tokenType()!= QXmlStreamReader::Characters){
+                    continue;
+                }
+                w.setPronon(xml.text().toString());
             }
         }
-
         xml.readNext();
     }
 
