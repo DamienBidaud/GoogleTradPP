@@ -17,12 +17,14 @@ SOURCES += main.cpp\
     language.cpp \
     word.cpp \
     xmlparseur.cpp \
-    xmlparseurfr.cpp
+    xmlparseurfr.cpp \
+    historique.cpp
 
 HEADERS  += mainwindow.h \
     language.h \
     word.h \
     xmlparseur.h \
-    xmlparseurfr.h
+    xmlparseurfr.h \
+    historique.h
 
 FORMS    += mainwindow.ui
