@@ -132,9 +132,10 @@
    </property>
    <widget class="QMenu" name="menuAide">
     <property name="title">
-     <string>Aide</string>
+     <string>Navigation</string>
     </property>
     <addaction name="actionAide"/>
+    <addaction name="actionHistorique"/>
    </widget>
    <addaction name="menuAide"/>
   </widget>
@@ -142,6 +143,11 @@
   <action name="actionAide">
    <property name="text">
     <string>Aide</string>
+   </property>
+  </action>
+  <action name="actionHistorique">
+   <property name="text">
+    <string>Historique</string>
    </property>
   </action>
  </widget>

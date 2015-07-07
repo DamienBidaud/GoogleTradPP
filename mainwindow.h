@@ -6,12 +6,15 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QVector>
-#include "language.h"
 #include <algorithm>
 #include <QMap>
+#include "language.h"
 #include "xmlparseur.h"
 #include "xmlparseurfr.h"
 #include "word.h"
+#include "historique.h"
+#include "historiquefenetre.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -30,11 +33,13 @@ public slots:
     void translate();
     void change();
     void reset();
+    void afficherHistorique();
 
 private:
     Ui::MainWindow *ui;
     QVector<language*> lang;
     QMap<QString, QMap<QString, word> > dico;
+    historique h;
 
 };
 

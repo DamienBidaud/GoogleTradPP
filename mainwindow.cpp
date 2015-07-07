@@ -6,10 +6,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     checkLanguage();
     QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(translate()));
     QObject::connect(this->ui->pushButton, SIGNAL(clicked()), this, SLOT(change()));
     QObject::connect(this->ui->pushButton_3, SIGNAL(clicked()), this, SLOT(reset()));
+    QAction::connect(this->ui->actionHistorique, SIGNAL(triggered()), this, SLOT(afficherHistorique()));
+
 }
 
 MainWindow::~MainWindow()
@@ -47,6 +50,7 @@ void MainWindow::translate(){
             }
         }
         this->ui->textEdit_2->setText(translate);
+        h.writeHistorique("historique/"+key+".json", text, translate);
 
     }
 }
@@ -112,4 +116,11 @@ bool MainWindow::isInVector(QString country){
     }else{
         return false;
     }
+}
+
+
+void MainWindow::afficherHistorique(){
+    QString filename = ui->source->currentText()+"-"+ui->destination->currentText()+".json";
+    HistoriqueFenetre hf("historique/"+filename);
+    hf.exec();
 }

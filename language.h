@@ -14,6 +14,7 @@ public:
     ~language();
     QString getName();
     QStringList getTranslate();
+
 private:
     QString name;
     QStringList translate;

@@ -11,8 +11,9 @@
 class historique
 {
 public:
-    historique(QString);
+    historique();
     void writeHistorique(QString, QString, QString);
+    std::map<QString, QString> getSymboleList(QString);
     ~historique();
 private:
     std::map<QString, QString> symboleListe;
