@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(translate()));
     QObject::connect(this->ui->pushButton, SIGNAL(clicked()), this, SLOT(change()));
     QObject::connect(this->ui->pushButton_3, SIGNAL(clicked()), this, SLOT(reset()));
+    QObject::connect(this->ui->pushButton_4, SIGNAL(clicked()), this, SLOT(voice()));
     QAction::connect(this->ui->actionHistorique, SIGNAL(triggered()), this, SLOT(afficherHistorique()));
 
 }
@@ -104,6 +105,9 @@ void MainWindow::checkLanguage(){
     }
 }
 
+void MainWindow::voice(){
+
+}
 
 //verfie si une langue à déjà été enregister
 bool MainWindow::isInVector(QString country){
