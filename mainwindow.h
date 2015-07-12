@@ -33,6 +33,7 @@ public slots:
     void translate();
     void change();
     void reset();
+    void voice();
     void afficherHistorique();
 
 private:
