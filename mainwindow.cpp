@@ -106,7 +106,9 @@ void MainWindow::checkLanguage(){
 }
 
 void MainWindow::voice(){
-
+    QString string = ui->textEdit_2->toPlainText();
+    const char* text = string.toStdString().c_str();
+    system(text);
 }
 
 //verfie si une langue à déjà été enregister
