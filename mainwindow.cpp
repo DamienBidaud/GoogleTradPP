@@ -106,8 +106,9 @@ void MainWindow::checkLanguage(){
 }
 
 void MainWindow::voice(){
-    QString string = ui->textEdit_2->toPlainText();
-    const char* text = string.toStdString().c_str();
+    QString string = "tts\\tts.exe \"" + ui->textEdit_2->toPlainText() + "\"";
+    QByteArray ba = string.toLatin1();
+    const char* text = ba.data();
     system(text);
 }
 
