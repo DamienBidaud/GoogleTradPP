@@ -6,11 +6,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap background("icone/background.png");
+    QPalette palette;
+    palette.setBrush(QPalette::Background, background);
+    this->setPalette(palette);
 
     checkLanguage();
     QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(translate()));
     QObject::connect(this->ui->pushButton, SIGNAL(clicked()), this, SLOT(change()));
     QObject::connect(this->ui->pushButton_3, SIGNAL(clicked()), this, SLOT(reset()));
+    QObject::connect(this->ui->pushButton_4, SIGNAL(clicked()), this, SLOT(voice()));
     QAction::connect(this->ui->actionHistorique, SIGNAL(triggered()), this, SLOT(afficherHistorique()));
 
 }
@@ -104,6 +109,12 @@ void MainWindow::checkLanguage(){
     }
 }
 
+void MainWindow::voice(){
+    QString string = "tts\\tts.exe \"" + ui->textEdit_2->toPlainText() + "\"";
+    QByteArray ba = string.toLatin1();
+    const char* text = ba.data();
+    system(text);
+}
 
 //verfie si une langue à déjà été enregister
 bool MainWindow::isInVector(QString country){

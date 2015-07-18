@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QVector>
+#include <QPixmap>
+#include <QPalette>
 #include <algorithm>
 #include <QMap>
 #include "language.h"
@@ -33,6 +35,7 @@ public slots:
     void translate();
     void change();
     void reset();
+    void voice();
     void afficherHistorique();
 
 private:
