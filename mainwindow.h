@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QVector>
+#include <QPixmap>
+#include <QPalette>
 #include <algorithm>
 #include <QMap>
 #include "language.h"

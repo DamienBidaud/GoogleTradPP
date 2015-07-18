@@ -6,6 +6,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap background("icone/background.png");
+    QPalette palette;
+    palette.setBrush(QPalette::Background, background);
+    this->setPalette(palette);
 
     checkLanguage();
     QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(translate()));
