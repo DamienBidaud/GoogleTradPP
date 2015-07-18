@@ -38,20 +38,26 @@ void MainWindow::translate(){
         QRegExp del("\\.");
         QRegExp del2("\\ ");
         QStringList phrases = text.split(del);
+        QStringList phrase;
         QMap<QString, word> dicoTrad = dico.value(key);
         //QList keys = dicoTrad.keys();
         for(int i = 0; i < phrases.length(); i++){
-            int j = 0;
-            word w;
-            while(i+j < phrases.length()&& (w = dicoTrad.value(phrases[i+j]))!= ""){
-                if(phrases[i+j]!= "" && w != ""){
-                    translate += w.getTranslate() + " ";
-                    i = i+(j+1);
+            phrase = phrases[i].split(del2);
+            for(int q = 0; q < phrase.length();q++){
+                int j = 0;
+                int start = q;
+                word w;
+                while(q+j < phrase.length()&& (w = dicoTrad.value(phrase[q+j]))!= ""){
+                    if(phrase[start+j]!= "" && w != ""){
+                        qDebug()<<"ok";
+                        translate += w.getTranslate() + " ";
+                        q = start+(j);
+                    }
+                    j++;
                 }
-                j++;
-            }
-            if(w==""){
-                translate += phrases[i] + " ";
+                if(w==""){
+                    translate += phrase[q] + " ";
+                }
             }
         }
         this->ui->textEdit_2->setText(translate);
