@@ -93,8 +93,19 @@ void MainWindow::checkLanguage(){
                 QStringList countries = file.split(del);
                 if(isInVector(countries[0])){
                     for(int j = 0; j < this->lang.size(); j++){
-                        if(this->lang[i]->getName()==countries[0]){
-                            this->lang[i]->getTranslate().append(countries[1]);
+                        if(this->lang[j]->getName()==countries[0]){
+                            this->lang[j]->getTranslate().append(countries[1]);
+                            bool isIn = false;
+                            for(int q = 0; q < this->ui->destination->count(); q++){
+                                if(this->ui->destination->itemText(q) == countries[1]){
+                                    isIn = true;
+                                }
+                            }
+                            if(!isIn)
+                                this->ui->destination->addItem(countries[1]);
+                            QString key = countries[0]+"-"+countries[1];
+                            XMLParseur xml("dico/"+files[i]);
+                            this->dico.insert(key, xml.getDico());
                         }
                     }
                 }else{
@@ -103,7 +114,14 @@ void MainWindow::checkLanguage(){
                     language* l = new language(countries[0], trad);
                     this->lang.append(l);
                     this->ui->source->addItem(countries[0]);
-                    this->ui->destination->addItem(countries[0]);
+                    bool isIn = false;
+                    for(int q = 0; q < this->ui->destination->count(); q++){
+                        if(this->ui->destination->itemText(q) == countries[1]){
+                            isIn = true;
+                        }
+                    }
+                    if(!isIn)
+                        this->ui->destination->addItem(countries[1]);
                     QString key = countries[0]+"-"+countries[1];
                     XMLParseur xml("dico/"+files[i]);
                     this->dico.insert(key, xml.getDico());

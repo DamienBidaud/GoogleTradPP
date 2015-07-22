@@ -151,7 +151,6 @@
     <property name="title">
      <string>Navigation</string>
     </property>
-    <addaction name="actionAide"/>
     <addaction name="actionHistorique"/>
    </widget>
    <addaction name="menuAide"/>
