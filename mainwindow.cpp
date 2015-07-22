@@ -71,8 +71,20 @@ void MainWindow::translate(){
 void MainWindow::change(){
     int source = this->ui->source->currentIndex();
     int destination = this->ui->destination->currentIndex();
-    this->ui->source->setCurrentIndex(destination);
-    this->ui->destination->setCurrentIndex(source);
+    int newSource = 0;
+    int newDestination = 0;
+    for(int i = 0; i < this->ui->source->count(); i++){
+        if(this->ui->source->itemText(i) == this->ui->destination->itemText(destination)){
+            newSource = i;
+        }
+    }
+    for(int i = 0; i < this->ui->destination->count(); i++){
+        if(this->ui->destination->itemText(i) == this->ui->source->itemText(source)){
+            newDestination = i;
+        }
+    }
+    this->ui->source->setCurrentIndex(newSource);
+    this->ui->destination->setCurrentIndex(newDestination);
 }
 
 //reset les champs text
