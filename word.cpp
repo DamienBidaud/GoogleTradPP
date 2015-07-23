@@ -70,3 +70,7 @@ bool word::operator !=(const word& w){
 bool word::operator !=(const QString& w){
     return !(*this == w);
 }
+
+void word::setType(QString type){
+    this->type = type;
+}

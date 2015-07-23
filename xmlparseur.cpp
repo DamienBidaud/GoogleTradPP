@@ -93,6 +93,9 @@ void XMLParseur::parseEntry(QXmlStreamReader &xml){
             if(xml.name()=="form"){
                 parseForm(xml, w);
             }
+            if(xml.name()=="gramGrp"){
+                parseGram(xml, w);
+            }
             //qDebug() << w.getName();
             if(xml.name()=="sense"){
                 parseSense(xml, w);
@@ -175,4 +178,28 @@ void XMLParseur::parseCit(QXmlStreamReader &xml, word& w){
 
 QMap<QString, word>& XMLParseur::getDico(){
     return this->dico;
+}
+
+
+void XMLParseur::parseGram(QXmlStreamReader &xml, word & w){
+    if(xml.tokenType() != QXmlStreamReader::StartElement && xml.name()=="gramGrp"){
+        return;
+    }
+    QString element;
+    while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "gramGrp")){
+        if(xml.tokenType() == QXmlStreamReader::StartElement){
+            if(xml.name()=="pos"){
+                element = xml.name().toString();
+                xml.readNext();
+                if(xml.tokenType() != QXmlStreamReader::Characters){
+                    continue;
+                }
+
+                //qDebug() << xml.text().toString();
+                w.setType(xml.text().toString());
+            }
+        }
+        xml.readNext();
+    }
+
 }

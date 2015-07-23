@@ -40,6 +40,7 @@ void MainWindow::translate(){
         QStringList phrases = text.split(del);
         QStringList phrase;
         QMap<QString, word> dicoTrad = dico.value(key);
+        QString typePrecedent = "";
         //QList keys = dicoTrad.keys();
         for(int i = 0; i < phrases.length(); i++){
             phrase = phrases[i].split(del2);
@@ -47,10 +48,28 @@ void MainWindow::translate(){
                 int j = 0;
                 int start = q;
                 word w;
+                typePrecedent = "";
                 while(q+j < phrase.length()&& (w = dicoTrad.value(phrase[q+j]))!= ""){
                     if(phrase[start+j]!= "" && w != ""){
-                        qDebug()<<"ok";
-                        translate += w.getTranslate() + " ";
+
+                        if(typePrecedent != "n" && w.getType() == "adj" && ui->source->currentText()=="fra"){
+                            qDebug() << translate;
+                            QStringList changeGrammaire = translate.split(del2);
+                            QString last = changeGrammaire[changeGrammaire.length()-2];
+                            changeGrammaire[changeGrammaire.length()-2] = w.getTranslate();
+                            qDebug() << last;
+                            //changeGrammaire.append(last);
+
+                            translate = "";
+                            for(int z = 0; z < changeGrammaire.length(); z++){
+                                qDebug() << translate;
+                                translate += changeGrammaire[z] + " ";
+                            }
+                            translate += last + " ";
+                        }else{
+                            translate += w.getTranslate() + " ";
+                        }
+                        typePrecedent = w.getType();
                         q = start+(j);
                     }
                     j++;

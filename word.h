@@ -12,6 +12,7 @@ public:
     void setName(QString);
     void setPronon(QString);
     void setTranslat(QString);
+    void setType(QString);
     QString getName();
     QString getTranslate();
     QString getType();

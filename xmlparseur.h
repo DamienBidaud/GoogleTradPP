@@ -24,6 +24,7 @@ public:
     void parseForm(QXmlStreamReader &xml, word&);
     void parseSense(QXmlStreamReader &xml, word&);
     void parseCit(QXmlStreamReader &xml, word&);
+    void parseGram(QXmlStreamReader&, word&);
     QMap<QString, word>& getDico();
 private:
     QString fileName;
